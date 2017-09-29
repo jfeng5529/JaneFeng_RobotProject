@@ -45,7 +45,11 @@ public class ChatbotMain {
 		public static boolean keywordIsIsolated(int psn, String keyword, String s){
 			int keywordLength=keyword.length(); String letter1; String letter2;
 			   if(psn==0) {
-				   letter1=s.substring(keywordLength-1, keywordLength);
+				   if(keywordLength==s.length())
+				   {
+					   return true;
+				   }
+				   letter1=s.substring(keywordLength, keywordLength+1);
 				   if(letter1.compareTo("a")<0)
 				   {
 					   return true;
