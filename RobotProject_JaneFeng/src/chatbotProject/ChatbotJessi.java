@@ -26,7 +26,7 @@ public class ChatbotJessi implements Topic {
 
 	@Override
 	public void startChatting(String response) {
-		ChatbotMain.print("Hey! It sounds like you and I have a common interest! Let's talk some more!");
+		ChatbotMain.print("Hey! It sounds like you and I have a common interest!! Let's talk some more!");
 		chatting = true;
 		while(chatting) {
 			response = ChatbotMain.getInput();
