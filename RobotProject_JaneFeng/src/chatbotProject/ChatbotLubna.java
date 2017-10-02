@@ -1,36 +1,46 @@
+
 package chatbotProject;
 
 public class ChatbotLubna implements Topic {
 	
-	private String[] keywords;
-	private String  goodbyeWord;
+	private String[] meanwords;
+	private String[]  lovewords;
 	private String  secretWord;
 	private boolean chatting;
-	
+
 	public ChatbotLubna() {
-		String[] temp = {"food","entertainment", "Internet","Video games"};
-		keywords = temp;
-		goodbyeWord = "bye";
+		String[] temp = {"ugly","dumb","mean", "stupid","dull","foolish"};
+		meanwords = temp;
+		String[] temp2 = {"lovely","nice","sweet","pretty","kind","great","like","love","beautiful","funny"};
+		lovewords = temp2;
 		secretWord = "potato";
+
 	}
 
 	
 	public boolean isTriggered(String response) {
-		for (int i = 0; i<keywords.length; i++) {
-			if(ChatbotMain.findKeyword(response, keywords[i], 0) >= 0) {
+		for (int i = 0; i<meanwords.length; i++) {
+			if(ChatbotMain.findKeyword(response, meanwords[i], 0) >= 0) {
+				meanCount ++;
 				return true;
 			}
 		}
+			for (int i = 0; i<lovewords.length; i++) {
+				if(ChatbotMain.findKeyword(response, lovewords[i], 0) >= 0) {
+					loveCount ++;
+					return true;
+		}
+			}
 			return false;
 		
 	}
 
 	public void startChatting(String response) {
-		ChatbotMain.print("Hey! It sounds like you and I have a common interest! Lets talk some more!");
+		ChatbotMain.print("Hey! You could be a little nicer.");
 		chatting = true;
 		while(chatting) {
 			 response = ChatbotMain.getInput();
-			if(ChatbotMain.findKeyword(response, goodbyeWord, 0) >= 0) {
+			if(ChatbotMain.findKeyword(response, lovewords, 0) >= 0) {
 				chatting = false;
 				ChatbotMain.chatbot.startTalkin();
 			}
