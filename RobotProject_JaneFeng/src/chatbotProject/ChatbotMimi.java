@@ -3,16 +3,23 @@ package chatbotProject;
 public class ChatbotMimi implements Topic {
 
 	private String[] keywords;
+	private String[] horoscopeKeywords;
+	private String[] zodiacKeywords;
+	private boolean chatting; 
 	private String goodbyeWord;
 	private String secretWord;
-	private boolean chatting;
 	
 	public ChatbotMimi() {
-		String[] temp = {"food", "entertainment", "Internet", "video games"};
+		String[] temp = {"zodiac", "horoscope"};
 		keywords = temp;
-		goodbyeWord = "bye";
+		String[] temp1 = { "aries", "taurus", "gemini", "cancer", "leo", "virgo", "libra", "scorpio", "sagittarius", "capricorn", "aquarius", "pisces"};
+		horoscopeKeywords = temp1;
+		String[] temp2 = {"rat", "ox", "tiger", "rabbit", "dragon", "snake", "horse", "sheep", "monkey", "rooster", "dog", "pig"};
+		zodiacKeywords = temp2;
+		String temp3 = "bye";
+		goodbyeWord= temp3;
 		secretWord = "weenie";
-	}
+		}
 
 	@Override
 	public boolean isTriggered(String response) {
@@ -25,7 +32,7 @@ public class ChatbotMimi implements Topic {
 
 	@Override
 	public void startChatting(String response) {
-		ChatbotMain.print("Hey! It sounds like you and I have a common interest! Let's talk some more!");
+		ChatbotMain.print("Ooh! I love talking about this! Tell me when you were born, and I'll give you your fortune. ( ͡° ͜ʖ ͡°)");
 		chatting = true;
 		
 		while(chatting) {
