@@ -21,21 +21,21 @@ public class ChatbotMain {
 		 *  where keyword is isolated and has noNegations. It returns -1 if the
 		 *  keyword is not found
 		 */
-		public static int findKeyword(String searchString, String keyword, int startPsn) {
+		public static int findKeyword(String searchString, String answerWords, int startPsn) {
 			//makes lowercase
 			searchString = searchString.toLowerCase();
-			keyword = keyword.toLowerCase();
+			answerWords = answerWords.toLowerCase();
 			//find the first position after the startPsn
-			int psn = searchString.indexOf(keyword, startPsn);
+			int psn = searchString.indexOf(answerWords, startPsn);
 			
 			//keep searching until keyword is found (noNegations and isolated)
 			while(psn >= 0) {
 				
-				if(keywordIsIsolated(psn, keyword, searchString) && noNegations(searchString, psn)) {
+				if(keywordIsIsolated(psn, answerWords, searchString) && noNegations(searchString, psn)) {
 					return psn;
 				}else {
 					//look for the next occurrence
-					psn = searchString.indexOf(keyword, psn+1);
+					psn = searchString.indexOf(answerWords, psn+1);
 				}
 			}
 			return -1;

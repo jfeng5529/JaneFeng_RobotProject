@@ -7,6 +7,8 @@ public class Chatbot {
 		private Topic lubna;
 		private Topic mimi;
 		private Topic jessi;
+		private int meanCount;
+		private int loveCount;
 		private boolean chatting;
 
 	public Chatbot() {
@@ -14,6 +16,8 @@ public class Chatbot {
 		lubna= new ChatbotLubna();
 		mimi= new ChatbotMimi();
 		jessi= new ChatbotJessi();
+		meanCount=0;
+		loveCount=0;
 		userName="unknown user";
 	}		
 	public void startTalkin() {
@@ -23,19 +27,19 @@ public class Chatbot {
 		while(chatting) {
 			ChatbotMain.print("What do you want to talk about?");
 			String response = ChatbotMain.getInput();
-			if(lubna.isTriggered(response)) {
+			if(lubna.isTriggered(response, meanCount, loveCount)) {
 				chatting = false;
 				lubna.startChatting(response);
 			}
-			else if(mimi.isTriggered(response)) {
+			else if(mimi.isTriggered(response, meanCount, loveCount)) {
 				chatting = false;
 				mimi.startChatting(response);
 			}
-			else if(jane.isTriggered(response)) {
+			else if(jane.isTriggered(response, meanCount, loveCount)) {
 				chatting = false;
 				jane.startChatting(response);
 			}
-			else if(jessi.isTriggered(response)) {
+			else if(jessi.isTriggered(response, meanCount, loveCount)) {
 				chatting = false;
 				jessi.startChatting(response);
 			}
