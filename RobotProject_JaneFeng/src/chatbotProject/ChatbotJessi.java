@@ -8,7 +8,7 @@ public class ChatbotJessi implements Topic {
 	private boolean chatting;
 	
 	public ChatbotJessi(){
-		String[] temp = {"wish","want","hope","need","craving","demand","fancy","longing","yearning"};
+		String[] temp = {"wish","wants","hope","need","craving","demand","fancy","longing","yearning"};
 		keywords = temp;
 		goodbyeWords = "bye";
 		secretWord = "wishes";
