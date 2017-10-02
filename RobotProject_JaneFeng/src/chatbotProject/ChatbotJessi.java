@@ -8,10 +8,10 @@ public class ChatbotJessi implements Topic {
 	private boolean chatting;
 	
 	public ChatbotJessi(){
-		String[] temp = {"food","entertainment","Internet","video games"};
+		String[] temp = {"wish","want","hope","need","craving","demand","fancy","longing","yearning"};
 		keywords = temp;
 		goodbyeWords = "bye";
-		secretWord = "pug";
+		secretWord = "wishes";
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class ChatbotJessi implements Topic {
 			response = ChatbotMain.getInput();
 			if(ChatbotMain.findKeyword(response, goodbyeWords, 0) >= 0) {
 				chatting = false;
-				ChatbotMain.chatbot.startTalking();
+				ChatbotMain.chatbot.startTalkin();
 				}else if(ChatbotMain.findKeyword(response, secretWord, 0) >= 0) {
 					ChatbotMain.print("Oh my goodness! You guessed my favorite thing ever. We are friends now.");
 			}else {
