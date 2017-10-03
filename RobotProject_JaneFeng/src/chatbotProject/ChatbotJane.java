@@ -52,5 +52,10 @@ public class ChatbotJane implements Topic {
 			}
 		}
 	}
+	
+	public int getLoveCount()
+	{
+		return 0;
+	}
 
 }

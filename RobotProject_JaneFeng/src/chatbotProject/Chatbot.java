@@ -3,7 +3,7 @@ package chatbotProject;
 
 public class Chatbot {
 		private String userName;
-		private Topic jane;
+		private ChatbotJane jane;
 		private Topic lubna;
 		private Topic mimi;
 		private Topic jessi;
@@ -19,7 +19,12 @@ public class Chatbot {
 		meanCount=0;
 		loveCount=0;
 		userName="unknown user";
-	}		
+	}	
+	
+	public ChatbotJane getJane() {
+		return jane;
+	}
+	
 	public void startTalkin() {
 		ChatbotMain.print("Welcome to our chatbot! What is your name?");
 		userName= ChatbotMain.getInput();
