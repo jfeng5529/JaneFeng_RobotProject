@@ -8,6 +8,7 @@ public class ChatbotMimi implements Topic {
 	private boolean chatting; 
 	private String goodbyeWord;
 	private String secretWord;
+	private ChatbotJane jane;
 	
 	public ChatbotMimi() {
 		String[] temp = {"zodiac", "horoscope"};
@@ -19,6 +20,7 @@ public class ChatbotMimi implements Topic {
 		String temp3 = "bye";
 		goodbyeWord= temp3;
 		secretWord = "weenie";
+		jane = ChatbotMain.chatbot.getJane();
 		}
 
 	@Override

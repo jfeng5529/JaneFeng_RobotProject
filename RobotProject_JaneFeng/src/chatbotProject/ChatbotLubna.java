@@ -7,6 +7,7 @@ public class ChatbotLubna implements Topic {
 	private String[]  lovewords;
 	private String  secretWord;
 	private boolean chatting;
+	private ChatbotJane jane;
 
 	public ChatbotLubna() {
 		String[] temp = {"ugly","dumb","mean", "stupid","dull","foolish"};
@@ -14,7 +15,8 @@ public class ChatbotLubna implements Topic {
 		String[] temp2 = {"lovely","nice","sweet","pretty","kind","great","like","love","beautiful","funny"};
 		lovewords = temp2;
 		secretWord = "potato";
-
+		
+		jane = ChatbotMain.chatbot.getJane();
 	}
 
 	
@@ -27,7 +29,7 @@ public class ChatbotLubna implements Topic {
 		}
 			for (int i = 0; i<lovewords.length; i++) {
 				if(ChatbotMain.findKeyword(response, lovewords[i], 0) >= 0) {
-					loveCount ++;
+					jane.increaseLoveCount();
 					return true;
 		}
 			}
