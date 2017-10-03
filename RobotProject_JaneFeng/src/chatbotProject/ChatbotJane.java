@@ -18,7 +18,7 @@ public class ChatbotJane implements Topic {
 		secretWord = "crystal ball";
 	}
 
-	public boolean isTriggered(String response, int meanCount, int loveCount) {
+	public boolean isTriggered(String response) {
 		for(int i =0; i<keywords.length; i++) {
 			if(ChatbotMain.findKeyword(response, keywords[i], 0)>=0) {
 				return true;
@@ -57,5 +57,6 @@ public class ChatbotJane implements Topic {
 	{
 		return 0;
 	}
+
 
 }
