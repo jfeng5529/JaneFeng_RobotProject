@@ -7,6 +7,7 @@ public class ChatbotJane implements Topic {
 	private String secretWord;
 	private String[] answerWords;
 	private boolean chatting;
+	private int loveCount;
 	
 	public ChatbotJane() {
 		String[] temp = {"fortune", "future", "luck", "success", "failure"};
@@ -38,7 +39,9 @@ public class ChatbotJane implements Topic {
 				 if(i==0)
 				 {
 					 ChatbotMain.print("Rude. Why don't you trust me!");
+					 
 				 }
+				 
 				chatting = false;
 				ChatbotMain.chatbot.startTalkin();
 			}
@@ -55,8 +58,17 @@ public class ChatbotJane implements Topic {
 	
 	public int getLoveCount()
 	{
-		return 0;
+		return loveCount;
 	}
+	
+	public void increaseLoveCount() {
+		loveCount++;
+	}
+	
+	public void decreaseLoveCount() {
+		loveCount++;
+	}
+	
 
 
 }
