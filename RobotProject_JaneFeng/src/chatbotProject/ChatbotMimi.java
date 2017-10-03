@@ -22,7 +22,7 @@ public class ChatbotMimi implements Topic {
 		}
 
 	@Override
-	public boolean isTriggered(String response, meanCount, loveCount) {
+	public boolean isTriggered(String response) {
 		for(int i = 0; i < keywords.length; i++) {
 			if(ChatbotMain.findKeyword(response, keywords[i], 0) >= 0)
 				return true;
@@ -46,6 +46,10 @@ public class ChatbotMimi implements Topic {
 			else
 				ChatbotMain.print("wat r u talkin aboot lol.");
 		}
+	}
+	
+	public void practiceLove() {
+		int loveCount = ChatbotMain.chatbot.getJane().getLoveCount();
 	}
 
 }
