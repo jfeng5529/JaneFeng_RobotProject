@@ -8,7 +8,8 @@ public class ChatbotJane implements Topic {
 	private String[] answerWords;
 	private boolean chatting;
 	private int loveCount;
-	private ChatbotLubna lubna;
+	private String[] meanWords;
+	private String[] loveWords;
 	
 	public ChatbotJane() {
 		String[] temp = {"fortune", "future", "luck", "success", "failure"};
@@ -18,10 +19,13 @@ public class ChatbotJane implements Topic {
 		String[] temp3 = {"no", "are you kidding", "yes", "sure", "go ahead", "of course", "why not" };
 		answerWords=temp3;
 		secretWord = "crystal ball";
-		lubna=ChatbotMain.chatbot.getLubna();
+		meanWords=ChatbotMain.chatbot.getLubna().meanWords;
+		loveWords=ChatbotMain.chatbot.getLubna().loveWords;
+		
 	}
 
 	public boolean isTriggered(String response) {
+		loveSpotting(response);
 		for(int i =0; i<keywords.length; i++) {
 			if(ChatbotMain.findKeyword(response, keywords[i], 0)>=0) {
 				return true;
@@ -64,10 +68,17 @@ public class ChatbotJane implements Topic {
 	}
 	
 	private void startQuiz() {
-		
+
+	}
+	
+	private void loveSpotting(String response) {
+		for(int i =0; i<meanWords.length; i++) {
+			if(ChatbotMain.findKeyword(response, meanWords[i], 0)>=0) {
+				decreaseLoveCount();
+			}
+		}
 		
 	}
-
 	public int getLoveCount()
 	{
 		return loveCount;

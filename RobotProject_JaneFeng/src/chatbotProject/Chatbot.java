@@ -40,7 +40,7 @@ public class Chatbot {
 				chatting = false;
 				mimi.startChatting(response);
 			}
-			else if(jane.isTriggered(response)) {
+				else if(jane.isTriggered(response)) {
 				chatting = false;
 				jane.startChatting(response);
 			}
