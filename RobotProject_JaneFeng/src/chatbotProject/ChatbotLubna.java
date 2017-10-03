@@ -52,5 +52,7 @@ public class ChatbotLubna implements Topic {
 			}
 		}
 	}
-
+	public void practiceLove() {
+		int loveCount = ChatbotMain.chatbot.getJane().getLoveCount();
+	}
 }
