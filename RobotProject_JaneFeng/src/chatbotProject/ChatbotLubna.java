@@ -23,7 +23,7 @@ public class ChatbotLubna implements Topic {
 	public boolean isTriggered(String response) {
 		for (int i = 0; i<meanwords.length; i++) {
 			if(ChatbotMain.findKeyword(response, meanwords[i], 0) >= 0) {
-				meanCount ++;
+				jane.decreaseLoveCount();
 				return true;
 			}
 		}
@@ -56,5 +56,11 @@ public class ChatbotLubna implements Topic {
 	}
 	public void practiceLove() {
 		int loveCount = ChatbotMain.chatbot.getJane().getLoveCount();
+	}
+	public String[] meanWords() {
+		return meanwords;
+	}
+	public String[] lovewWords() {
+		return lovewords;
 	}
 }
