@@ -1,10 +1,10 @@
 package chatbotProject;
-	
+
 
 public class Chatbot {
 		private String userName;
 		private ChatbotJane jane;
-		private Topic lubna;
+		private ChatbotLubna lubna;
 		private Topic mimi;
 		private Topic jessi;
 		private boolean chatting;
@@ -15,12 +15,16 @@ public class Chatbot {
 		mimi= new ChatbotMimi();
 		jessi= new ChatbotJessi();
 		userName="unknown user";
-	}	
+	}
 	
 	public ChatbotJane getJane() {
 		return jane;
 	}
 	
+	public ChatbotLubna getLubna() {
+		return lubna;
+		
+	}
 	public void startTalkin() {
 		ChatbotMain.print("Welcome to our chatbot! What is your name?");
 		userName= ChatbotMain.getInput();

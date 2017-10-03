@@ -8,6 +8,7 @@ public class ChatbotJane implements Topic {
 	private String[] answerWords;
 	private boolean chatting;
 	private int loveCount;
+	private ChatbotLubna lubna;
 	
 	public ChatbotJane() {
 		String[] temp = {"fortune", "future", "luck", "success", "failure"};
@@ -17,6 +18,7 @@ public class ChatbotJane implements Topic {
 		String[] temp3 = {"no", "are you kidding", "yes", "sure", "go ahead", "of course", "why not" };
 		answerWords=temp3;
 		secretWord = "crystal ball";
+		lubna=ChatbotMain.chatbot.getLubna();
 	}
 
 	public boolean isTriggered(String response) {
@@ -36,12 +38,16 @@ public class ChatbotJane implements Topic {
 			for(int i=0; i<answerWords.length; i++)
 			{	
 			 if(ChatbotMain.findKeyword(response, answerWords[i], 0)>=0) {
-				 if(i==0)
+				 if(i<=1)
 				 {
 					 ChatbotMain.print("Rude. Why don't you trust me!");
-					 
+					 decreaseLoveCount();
 				 }
-				 
+				 if(i>1)
+				 {
+					 ChatbotMain.print("okay. Let's go! To able to give an accurate reading AAAAA, there are some questions i want you to answer honestly and thoughtfully.");
+					 startQuiz();
+				 }
 				chatting = false;
 				ChatbotMain.chatbot.startTalkin();
 			}
@@ -49,13 +55,19 @@ public class ChatbotJane implements Topic {
 			if(ChatbotMain.findKeyword(response, secretWord, 0)>=0)
 			{
 				ChatbotMain.print("Oh my goodness! you guessed my favorite thing ever. We are friends now.");
+				increaseLoveCount();
 			}
 			else {
-				ChatbotMain.print("I don't really get you. tell me something else?");
+				ChatbotMain.print("I don't really get y`1ou. tell me something else?");
 			}
 		}
 	}
 	
+	private void startQuiz() {
+		
+		
+	}
+
 	public int getLoveCount()
 	{
 		return loveCount;
@@ -66,9 +78,7 @@ public class ChatbotJane implements Topic {
 	}
 	
 	public void decreaseLoveCount() {
-		loveCount++;
+		loveCount--;
 	}
-	
-
 
 }
