@@ -10,6 +10,7 @@ public class ChatbotJane implements Topic {
 	private int loveCount;
 	private String[] meanResponse;
 	private String[] loveResponse;
+	private String[] goodbyeResponse;
 	
 	public ChatbotJane() {
 		String[] temp = {"fortune", "future", "luck", "success", "failure"};
@@ -59,11 +60,11 @@ public class ChatbotJane implements Topic {
 					if(ChatbotMain.findKeyword(response, goodbyeWords[t], 0)>=0) {
 						chatting = false;
 						if(loveCount>0) {
-						ChatbotMain.print("Okay....Rememeber to come back soon.");
+						ChatbotMain.print("Awwww. Rememeber to come back soon.");
 						}
 						else
 						{
-							ChatbotMain.print("Good don't come back............................Ha just kidding or not.");
+							ChatbotMain.print("Good don't come back...................Ha just kidding or not.");
 						}
 						ChatbotMain.chatbot.startTalkin();
 					}
