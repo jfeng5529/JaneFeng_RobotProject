@@ -25,6 +25,10 @@ public class Chatbot {
 		return lubna;
 		
 	}
+	public String name()
+	{
+		return userName;
+	}
 	public void startTalkin() {
 		ChatbotMain.print("Welcome to our chatbot! What is your name?");
 		userName= ChatbotMain.getInput();
