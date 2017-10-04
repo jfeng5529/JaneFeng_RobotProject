@@ -9,13 +9,15 @@ public class ChatbotJessi implements Topic {
 	private boolean chatting;
 	private int wishCount;
 	private ChatbotJane jane;
+	private int loveCount;
 	
 	public ChatbotJessi(){
-		String[] temp = {"wish","wants","hope","need","craving","demand","fancy","longing","yearning"};
+		String[] temp = {"wish","wishes","wants","hope","need","craving","demand","fancy","longing","yearning"};
 		keywords = temp;
 		goodbyeWords = "bye";
 		secretWord = "magic";
 		noResponse = "";
+		
 		
 	}
 
@@ -34,6 +36,7 @@ public class ChatbotJessi implements Topic {
 	public void startChatting(String response) {
 		ChatbotMain.print("Tell me your wishes and I will make them come true!");
 		chatting = true;
+		loveCount = jane.getLoveCount();
 		while(chatting) {
 			response = ChatbotMain.getInput();
 			if(ChatbotMain.findKeyword(response, goodbyeWords, 0) >= 0) {
@@ -41,12 +44,15 @@ public class ChatbotJessi implements Topic {
 				ChatbotMain.chatbot.startTalkin();
 				}else if(ChatbotMain.findKeyword(response, secretWord, 0) >= 0) {
 					ChatbotMain.print("You believe in magic too!! We are friends now. I will grant you an extra wish!");
-					wishCount = wishCount + 1;
+					wishCount = wishCount + 2;
 			}else {
-				ChatbotMain.print("Huh. I don't really get you. Tell me something else?");
 				if(ChatbotMain.findKeyword(response, noResponse, 0) >= 0) {
 					ChatbotMain.print("Well I guess you really don't want to make any wishes...");
 					wishCount = wishCount - 1;
+					chatting = false;
+					
+					ChatbotMain.print("Huh. I don't really get you. Tell me something else?");
+					ChatbotMain.chatbot.resume();
 				}
 			}
 		}
@@ -55,3 +61,6 @@ public class ChatbotJessi implements Topic {
 	
 
 }
+
+// wish count based on count of love and mean responses
+// answers refers to user's wish!
