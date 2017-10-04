@@ -22,7 +22,6 @@ public class ChatbotMimi implements Topic {
 		secretWord = "weenie";
 		}
 
-	@Override
 	public boolean isTriggered(String response) {
 		jane = ChatbotMain.chatbot.getJane();
 		for(int i = 0; i < keywords.length; i++) {
@@ -32,7 +31,6 @@ public class ChatbotMimi implements Topic {
 		return false;
 	}
 
-	@Override
 	public void startChatting(String response) {
 		ChatbotMain.print("Ooh! I love talking about this! Tell me when you were born, and I'll give you your fortune. ( ͡° ͜ʖ ͡°)");
 		chatting = true;
@@ -57,8 +55,9 @@ public class ChatbotMimi implements Topic {
 	}
 
 	public String getZodiac(String input) {
+		//returns word in the array based on their birthday.
+		//returns null if it doesn't get anything.
 		return null;
-		//returns word in the array based on their birthday
 	}
 	
 	public void practiceLove() {
@@ -66,5 +65,3 @@ public class ChatbotMimi implements Topic {
 	}
 
 }
-
-//comment
