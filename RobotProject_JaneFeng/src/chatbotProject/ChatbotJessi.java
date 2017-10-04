@@ -6,12 +6,16 @@ public class ChatbotJessi implements Topic {
 	private String goodbyeWords;
 	private String secretWord;
 	private boolean chatting;
+	private int wishCount;
+	private ChatbotJane jane;
 	
 	public ChatbotJessi(){
 		String[] temp = {"wish","wants","hope","need","craving","demand","fancy","longing","yearning"};
 		keywords = temp;
 		goodbyeWords = "bye";
-		secretWord = "wishes";
+		secretWord = "magic";
+		
+		jane = ChatbotMain.chatbot.getJane();
 	}
 
 	@Override
@@ -26,7 +30,7 @@ public class ChatbotJessi implements Topic {
 
 	@Override
 	public void startChatting(String response) {
-		ChatbotMain.print("Hey! It sounds like you and I have a common interest! Let's talk some more!");
+		ChatbotMain.print("Tell me your 3 wishes and I will make them come true!");
 		chatting = true;
 		while(chatting) {
 			response = ChatbotMain.getInput();
@@ -34,11 +38,19 @@ public class ChatbotJessi implements Topic {
 				chatting = false;
 				ChatbotMain.chatbot.startTalkin();
 				}else if(ChatbotMain.findKeyword(response, secretWord, 0) >= 0) {
-					ChatbotMain.print("Oh my goodness! You guessed my favorite thing ever. We are friends now.");
+					ChatbotMain.print("You believe that magic is real too!! We are friends now. I will grant you an extra wish!");
+					wishCount = wishCount + 1;
 			}else {
 				ChatbotMain.print("Huh. I don't really get you. Tell me something else?");
+				if(response = "") {
+					wishCount = wishCount - 1;
+				}
 			}
 		}
+	}
+	
+	public void practiceLove() {
+		int loveCount = ChatbotMain.chatbot.getJane().getLoveCount();
 	}
 
 }
