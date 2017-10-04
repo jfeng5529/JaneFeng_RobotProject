@@ -39,15 +39,26 @@ public class ChatbotMimi implements Topic {
 		
 		while(chatting) {
 			response = ChatbotMain.getInput();
+			String zodiac = getZodiac(response);
 			if(ChatbotMain.findKeyword(response, goodbyeWord, 0) >= 0) {
 				chatting = false;
-				ChatbotMain.chatbot.startTalkin();
+				ChatbotMain.chatbot.resume();
 			}
-			else if(ChatbotMain.findKeyword(response, secretWord, 0) >= 0)
-				ChatbotMain.print("OMG you know weenie hut jr.?!??!??! We're BFFS!!!");
+			else if(zodiac != null)
+				tellHoroscope(zodiac);
 			else
 				ChatbotMain.print("wat r u talkin aboot lol.");
 		}
+	}
+	
+	private void tellHoroscope(String zodiac) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String getZodiac(String input) {
+		return null;
+		//returns word in the array based on their birthday
 	}
 	
 	public void practiceLove() {
