@@ -17,11 +17,11 @@ public class ChatbotJessi implements Topic {
 		secretWord = "magic";
 		noResponse = "";
 		
-		jane = ChatbotMain.chatbot.getJane();
 	}
 
 	@Override
 	public boolean isTriggered(String response) {
+		jane = ChatbotMain.chatbot.getJane();
 		for(int i = 0; i< keywords.length; i++) {
 			if(ChatbotMain.findKeyword(response, keywords[i], 0) >= 0) {
 				return true;
@@ -32,7 +32,7 @@ public class ChatbotJessi implements Topic {
 
 	@Override
 	public void startChatting(String response) {
-		ChatbotMain.print("Tell me your 3 wishes and I will make them come true!");
+		ChatbotMain.print("Tell me your wishes and I will make them come true!");
 		chatting = true;
 		while(chatting) {
 			response = ChatbotMain.getInput();
@@ -40,19 +40,18 @@ public class ChatbotJessi implements Topic {
 				chatting = false;
 				ChatbotMain.chatbot.startTalkin();
 				}else if(ChatbotMain.findKeyword(response, secretWord, 0) >= 0) {
-					ChatbotMain.print("You believe that magic is real too!! We are friends now. I will grant you an extra wish!");
+					ChatbotMain.print("You believe in magic too!! We are friends now. I will grant you an extra wish!");
 					wishCount = wishCount + 1;
 			}else {
 				ChatbotMain.print("Huh. I don't really get you. Tell me something else?");
 				if(ChatbotMain.findKeyword(response, noResponse, 0) >= 0) {
+					ChatbotMain.print("Well I guess you really don't want to make any wishes...");
 					wishCount = wishCount - 1;
 				}
 			}
 		}
 	}
 	
-	public void practiceLove() {
-		int loveCount = ChatbotMain.chatbot.getJane().getLoveCount();
-	}
+	
 
 }
