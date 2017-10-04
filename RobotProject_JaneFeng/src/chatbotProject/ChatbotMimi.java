@@ -20,11 +20,11 @@ public class ChatbotMimi implements Topic {
 		String temp3 = "bye";
 		goodbyeWord= temp3;
 		secretWord = "weenie";
-		jane = ChatbotMain.chatbot.getJane();
 		}
 
 	@Override
 	public boolean isTriggered(String response) {
+		jane = ChatbotMain.chatbot.getJane();
 		for(int i = 0; i < keywords.length; i++) {
 			if(ChatbotMain.findKeyword(response, keywords[i], 0) >= 0)
 				return true;

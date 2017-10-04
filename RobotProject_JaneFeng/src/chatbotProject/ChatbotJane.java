@@ -22,6 +22,7 @@ public class ChatbotJane implements Topic {
 		String[] temp4= {"Hey, you need to stop speaking nonsense.", "My crystal ball remembers all the things good and bad.", "Momomopika! turn into a piggy!", "Let me go make a posion potion just for you."};
 		meanResponse=temp4;
 		String[] temp5= {"Let me put some faith and luck into ur fortune.", "honey, lets talk about something I get.", "Hmmm hows your day so far?"};
+		loveResponse=temp5;
 	}
     
 	public boolean isTriggered(String response) {

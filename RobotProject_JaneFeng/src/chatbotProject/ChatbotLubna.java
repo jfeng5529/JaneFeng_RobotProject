@@ -15,12 +15,11 @@ public class ChatbotLubna implements Topic {
 		String[] temp2 = {"lovely","nice","sweet","pretty","kind","great","like","love","beautiful","funny"};
 		lovewords = temp2;
 		secretWord = "potato";
-		
-		jane = ChatbotMain.chatbot.getJane();
 	}
 
 	
 	public boolean isTriggered(String response) {
+		jane = ChatbotMain.chatbot.getJane();
 		for (int i = 0; i<meanwords.length; i++) {
 			if(ChatbotMain.findKeyword(response, meanwords[i], 0) >= 0) {
 				jane.decreaseLoveCount();
@@ -42,9 +41,9 @@ public class ChatbotLubna implements Topic {
 		chatting = true;
 		while(chatting) {
 			 response = ChatbotMain.getInput();
-			if(ChatbotMain.findKeyword(response, lovewords, 0) >= 0) {
+			if(ChatbotMain.findKeyword(response, lovewords[0], 0) >= 0) {
 				chatting = false;
-				ChatbotMain.chatbot.startTalkin();
+				ChatbotMain.chatbot.resume();
 			}
 			else if(ChatbotMain.findKeyword(response, secretWord, 0) >= 0){
 				ChatbotMain.print("Oh my goodness! You guessed my favorite thing ever. We area friends now.");
