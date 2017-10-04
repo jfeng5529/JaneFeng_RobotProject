@@ -5,6 +5,7 @@ public class ChatbotJessi implements Topic {
 	private String[] keywords;
 	private String goodbyeWords;
 	private String secretWord;
+	private String noResponse;
 	private boolean chatting;
 	private int wishCount;
 	private ChatbotJane jane;
@@ -14,6 +15,7 @@ public class ChatbotJessi implements Topic {
 		keywords = temp;
 		goodbyeWords = "bye";
 		secretWord = "magic";
+		noResponse = "";
 		
 		jane = ChatbotMain.chatbot.getJane();
 	}
@@ -42,7 +44,7 @@ public class ChatbotJessi implements Topic {
 					wishCount = wishCount + 1;
 			}else {
 				ChatbotMain.print("Huh. I don't really get you. Tell me something else?");
-				if(response = "") {
+				if(ChatbotMain.findKeyword(response, noResponse, 0) >= 0) {
 					wishCount = wishCount - 1;
 				}
 			}
