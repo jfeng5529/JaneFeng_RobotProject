@@ -11,7 +11,7 @@ public class Chatbot {
 
 	public Chatbot() {
 		jane= new ChatbotJane();
-		lubna= new ChatbotLubna();
+		//lubna= new ChatbotLubna();
 		mimi= new ChatbotMimi();
 		jessi= new ChatbotJessi();
 		userName="unknown user";
@@ -48,11 +48,11 @@ public class Chatbot {
 		while(chatting) {
 			ChatbotMain.print("What do you want to talk about?");
 			String response = ChatbotMain.getInput();
-			if(lubna.isTriggered(response)) {
+			/*if(lubna.isTriggered(response)) {
 				chatting = false;
 				lubna.startChatting(response);
 			}
-			if(mimi.isTriggered(response)) {
+			*/if(mimi.isTriggered(response)) {
 				chatting = false;
 				mimi.startChatting(response);
 			}
