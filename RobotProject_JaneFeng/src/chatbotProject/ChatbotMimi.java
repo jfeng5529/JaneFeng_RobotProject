@@ -50,14 +50,29 @@ public class ChatbotMimi implements Topic {
 	}
 	
 	private void tellHoroscope(String zodiac) {
-		// TODO Auto-generated method stub
+		// this is what the bot returns after the user inputs their birth date.
+		if (zodiac = "")
 		
 	}
 
 	public String getZodiac(String input) {
 		//returns word in the array based on their birthday.
 		//returns null if it doesn't get anything.
+		for (int i = 0; i < horoscopeKeywords.length; i++) {
+			if(ChatbotMain.findKeyword(input, keywords[i], 0) >= 0) {
+				// look for what the input was inside of the array
+				tellHoroscope(input);
+			}
+			else {
+				for (int i = 0; i < zodiacKeywords.length; i++) {
+					// do the same, but look in the zodiac array
+					tellHoroscope(input);
+				}
+			}
+				
+		}
 		return null;
+		ChatbotMain.print("You might've made a mistake. Could you please repeat when you were born?");
 	}
 	
 	public void practiceLove() {
@@ -65,3 +80,4 @@ public class ChatbotMimi implements Topic {
 	}
 
 }
+//comment 
