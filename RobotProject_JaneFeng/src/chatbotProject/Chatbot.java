@@ -11,7 +11,7 @@ public class Chatbot {
 
 	public Chatbot() {
 		jane= new ChatbotJane();
-		//lubna= new ChatbotLubna();
+		lubna= new ChatbotLubna();
 		mimi= new ChatbotMimi();
 		jessi= new ChatbotJessi();
 		userName="unknown user";
@@ -38,21 +38,22 @@ public class Chatbot {
 		return userName;
 	}
 	public void startTalkin() {
-		ChatbotMain.print("You have entered the fourtune cookie world. Give me your name.");
+		ChatbotMain.print("You have entered the fortune cookie world. Give me your name.");
 		userName= ChatbotMain.getInput();
-		resume();
+		ChatbotMain.print("Nice meeting you "+userName+"! Tell me about yourself, lets start with your interest?");
+		String response = ChatbotMain.getInput();
+		lubna.startChatting(response);
 		
 	}
 	public void resume() {
 		chatting = true;
 		while(chatting) {
-			ChatbotMain.print("What do you want to talk about?");
 			String response = ChatbotMain.getInput();
-			/*if(lubna.isTriggered(response)) {
+			if(lubna.isTriggered(response)) {
 				chatting = false;
 				lubna.startChatting(response);
 			}
-			*/if(mimi.isTriggered(response)) {
+			if(mimi.isTriggered(response)) {
 				chatting = false;
 				mimi.startChatting(response);
 			}
@@ -65,7 +66,7 @@ public class Chatbot {
 				jessi.startChatting(response);
 			}
 			else
-				ChatbotMain.print("I'm sorry. I don't understand");
+				ChatbotMain.print("I'm sorry. I don't understand. Let's talk about fortune, horoscope, wishes, cause you know I'm a fortune teller.");
 		}
 	}
 	

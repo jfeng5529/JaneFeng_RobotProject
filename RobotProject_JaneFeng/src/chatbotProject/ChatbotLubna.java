@@ -58,7 +58,9 @@ public class ChatbotLubna implements Topic {
 						if( likePsn >= 0 ){
 							thingsLiked = likeResponse.substring(likePsn+5);
 							userLikeStored = true;
-							ChatbotMain.print("You are such an" + "interesting" + " person, because you like "+thingsLiked+".");
+							//insert if loop here
+							ChatbotMain.print("You are such an interesting person, because you like "+thingsLiked+".");
+							//else that's so interesting. do you want to know what i know about you
 						keywordFound = true;
 						}
 							//ChatbotMain.chatbot.getHello().printMoodyString();
