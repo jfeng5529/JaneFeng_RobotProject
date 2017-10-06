@@ -16,7 +16,7 @@ public class ChatbotJessi implements Topic {
 	public ChatbotJessi(){
 		String[] temp = {"wish","wishes","wants","hope","need","craving","demand","fancy","longing","yearning"};
 		keywords = temp;
-		String[] temp2 = {};
+		String[] temp2 = {""};
 		compliments = temp2;
 		//String[] temp2 = {"puppy", "dog","cat","money","chocolate", "candy", "car","house"};
 		//userWishes = temp2;
