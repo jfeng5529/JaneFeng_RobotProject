@@ -4,6 +4,7 @@ public class ChatbotJessi implements Topic {
 	
 	private String[] keywords;
 	//private String[] userWishes;
+	private String[] compliments;
 	private String goodbyeWords;
 	private String secretWord;
 	private String noResponse;
@@ -15,6 +16,8 @@ public class ChatbotJessi implements Topic {
 	public ChatbotJessi(){
 		String[] temp = {"wish","wishes","wants","hope","need","craving","demand","fancy","longing","yearning"};
 		keywords = temp;
+		String[] temp2 = {};
+		compliments = temp2;
 		//String[] temp2 = {"puppy", "dog","cat","money","chocolate", "candy", "car","house"};
 		//userWishes = temp2;
 		goodbyeWords = "bye";
@@ -41,12 +44,18 @@ public class ChatbotJessi implements Topic {
 		chatting = true;
 		loveCount = jane.getLoveCount();
 		if(loveCount > 0) {
-			ChatbotMain.print("You have "+wishCount+" wishes to make!!!");
 			wishCount = 3;
+			ChatbotMain.print("You have "+wishCount+" wishes to make!!!");
+		}
+		else if(loveCount == 0) {
+			ChatbotMain.print("I see that you have just entered the fortune cookie world. Well aren't you greedy!!! Complimemt me! ");
+			if(ChatbotMain.findKeyword(response, compliments[i], 0) >= 0) {
+				
+			}
 		}
 		else {
-			ChatbotMain.print("Hmmmm...wait your attitude and the things you said earlier wasn't that nice. I will grant you "+wishCount+" and only "+wishCount+" wish.");
 			wishCount = 1;
+			ChatbotMain.print("Hmmmm...wait your attitude and the things you said earlier wasn't that nice. I will grant you "+wishCount+" and only "+wishCount+" wish.");
 		}
 		while(chatting) {
 			response = ChatbotMain.getInput();
@@ -87,3 +96,4 @@ public class ChatbotJessi implements Topic {
 
 // wish count based on count of love and mean responses (loveCount)
 // answers refers to user's wish!
+// compliment me (wish section when love count == 0)
