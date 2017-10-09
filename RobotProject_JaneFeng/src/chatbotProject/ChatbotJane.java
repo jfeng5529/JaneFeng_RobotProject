@@ -12,6 +12,8 @@ public class ChatbotJane implements Topic {
 	private String[] loveResponse;
 	private String[] goodbyeResponse;
 	private boolean quizLoop;
+	private String[] quizConvo;
+	private String[] quizResult;
 	
 	public ChatbotJane() {
 		String[] temp = {"fortune", "future", "luck", "success", "failure"};
@@ -27,10 +29,14 @@ public class ChatbotJane implements Topic {
 		loveResponse=temp5;
 		String[] temp6= {"Awwww. Rememeber to come back soon.", "BYEEEEEEEE!", "I'll think about your fortune when you are gone.", "Don't let me miss you too much!", "Good don't come back...............Ha just kidding or not.", "Bye go do your work.", "I was going to say the same thing. Enough talking.", "I will think of a 'surprise' to put in ur fortune when you are gone.", "Okay bye bye bye.", "Fine, if you insist."};
 		goodbyeResponse=temp6;	
+		String[] temp7= {"Are you an active person?", "What is your age?", "What do you like to do in your spare time?", "Do you try to set goals and try to meet them?", "Do you worry about money alot?", "Do you spend alot of time by yourself?", "Do you like the way you look?", "Would you rather tell the truth or lie and get paid?"};
+		quizConvo=temp7;
+		String[] temp8= {"Wishes will come true for you. Always remember that God will reward those who commit good deeds and punish the ones that purse the worst of humanities. Time is not the problem; it is the solution. Maintain your honesty and innocence, and light will guide your way.", "It might sound sad, but you are an average person with an average ambition. Life might be ordinary, but how is that not something joyful and meaningful. As long as you STUDY AND DO YOUR HOMEWORK love will be approaching you. In other words no grade no love.", "Theres much room for you to improve, but on the good side you still have much time to accomplish that. Be committed to your own goals so they can be committed to you. Life is circle. You might find what your looking for is right there with you in the start. Don't forget your primary ambition, what started you on your journey. Keep that simple pleasure so you can reflect back when you are on the other half of the circle. Don't worry about money and love as much, they will come when the time is right."};
+		quizResult=temp8;
 	}
     
 	public boolean isTriggered(String response) {
-		//loveSpotting(response);
+		loveSpotting(response);
 		for(int i =0; i<keywords.length; i++) {
 			if(ChatbotMain.findKeyword(response, keywords[i], 0)>=0) {
 				return true;
@@ -59,7 +65,7 @@ public class ChatbotJane implements Topic {
 				 {
 					 ChatbotMain.print("okay. Let's go! To able to give you an accurate reading "+userName+ " , there are some questions I want you to answer honestly and thoughtfully.");
 					 quizLoop=true;
-					 startQuiz();
+					 startQuiz(response);
 				 }
 				 keywordFound=true;
 			}
@@ -99,14 +105,49 @@ public class ChatbotJane implements Topic {
 		}
 	}
 
-	private void startQuiz() {
+	private void startQuiz(String response) {
 		ChatbotMain.print("okay, so here we go.");
-		quizLoop =true;
-		while()
+		int conversationCount=0;
+		int quizPoints=0;
+		while(quizLoop)
+		{
+			response = ChatbotMain.getInput();
+			ChatbotMain.print(quizConvo[conversationCount]);
+			conversationCount++;
+			if(conversationCount>=4)
+			{
+				if(response.equals("yes")) {
+					quizPoints--;
+				}
+				else
+				{
+					quizPoints++;
+				}
+			}
+			if(conversationCount<4)
+			{
+				if(response.equals("yes")&&conversationCount==0||conversationCount==3) {
+					quizPoints++;
+				}
+
+			}
+			if(conversationCount==9){
+				quizLoop=false;
+			}
+		}
+		if(quizPoints>3)
+		{
+			ChatbotMain.print(quizResult[0]);
+		}
+		else if(quizPoints>0) {
+			ChatbotMain.print(quizResult[1]);
+		}
+		else {
+			ChatbotMain.print(quizResult[2]);
+		}
+	}	
 	
-	}
-	
-	/*private void loveSpotting(String response) {
+	private void loveSpotting(String response) {
 		String[] meanWords=ChatbotMain.chatbot.getLubna().meanWords();
 		String[] loveWords=ChatbotMain.chatbot.getLubna().lovewWords();
 		for(int i =0; i<meanWords.length; i++) {
@@ -123,7 +164,8 @@ public class ChatbotJane implements Topic {
 			}
 		}
 		
-	}*/
+	}
+	
 	public int getLoveCount()
 	{
 		return loveCount;
