@@ -16,7 +16,7 @@ public class ChatbotJane implements Topic {
 	private String[] quizResult;
 	
 	public ChatbotJane() {
-		String[] temp = {"fortune", "future", "luck", "success", "failure"};
+		String[] temp = {"fortune", "future", "luck", "success", "failure"} ;
 		keywords = temp;
 		String[] temp2 = {"bye", "got to go", "talk to you later", "goodbye", "see you"};
 		goodbyeWords= temp2;
