@@ -112,6 +112,10 @@ public class ChatbotJane implements Topic {
 		while(quizLoop)
 		{
 			response = ChatbotMain.getInput();
+			if(conversationCount>=8){
+				quizLoop=false;
+			}
+			else{
 			ChatbotMain.print(quizConvo[conversationCount]);
 			conversationCount++;
 			if(conversationCount>=4)
@@ -131,9 +135,7 @@ public class ChatbotJane implements Topic {
 				}
 
 			}
-			if(conversationCount==9){
-				quizLoop=false;
-			}
+		}
 		}
 		if(quizPoints>3)
 		{
