@@ -5,7 +5,6 @@ public class ChatbotMimi implements Topic {
 	private String[] keywords;
 	private String[] horoscopeKeywords;
 	private String[] zodiacKeywords;
-	
 	private boolean chatting; 
 	private String goodbyeWord;
 	private String secretWord;
@@ -23,10 +22,12 @@ public class ChatbotMimi implements Topic {
 		String temp3 = "bye";
 		goodbyeWord= temp3;
 		secretWord = "orion's belt";
-		jane = ChatbotMain.chatbot.getJane();
 	}
 
+	// make a method so that it checks which index of the array the input matches, then output a different message depending on the index
+	
 	public boolean isTriggered(String response) {
+		jane = ChatbotMain.chatbot.getJane();
 		for (int i = 0; i<meanwords.length; i++) {
 			if(ChatbotMain.findKeyword(response, meanwords[i], 0) >= 0) {
 				jane.decreaseLoveCount();
