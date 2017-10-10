@@ -156,4 +156,62 @@ public class ChatbotMain {
 		}
 	}	
 
+/*public void startChatting(String response) {
+		ChatbotMain.print("Tell me something you like!");
+		chatting =true;
+		String userName=ChatbotMain.chatbot.name();
+		while(chatting) {
+			response = ChatbotMain.getInput();
+			boolean keywordFound = false;
+			inLikeLoop = true;
+			while(inLikeLoop){
+				
+				likeResponse = response;
+				int likePsn = likeResponse.indexOf("like");
+				if(likePsn > -1) {
+					thingsLiked = likeResponse.substring(likePsn+5);
+					userLikeStored = true;
+					if(thingsLiked.length( ) > 20) {
+						ChatbotMain.print("That's so interesting. Do you want to know what I know about you ;)");
+					}
+					else {
+						ChatbotMain.print("You are such an interesting person, because you like "+ thingsLiked + ".");
+					}
+				
+				}
+				else {
+					thingsLiked = likeResponse;
+					if(thingsLiked.length( ) > 20) {
+						ChatbotMain.print("That's so interesting. Do you want to know what I know about you ;)");
+					}
+					else {
+						ChatbotMain.print("You are such an interesting person, because you like "+ thingsLiked + ".");
+					}
+				}
+					inLikeLoop = false;
+					}
+				}
+			for(int i=0; i<keywords.length; i++)
+			{	
+			 if(ChatbotMain.findKeyword(response, keywords[i], 0)>=0) {
+				 if(i == 0)
+				 {
+					 ChatbotMain.print("What are some things you like?");
+				 }
+							
+							if(ChatbotMain.findKeyword(thingsLiked,"" , 0) >= 0){
+								inLikeLoop = false;
+								
+							}
+							else
+							{
+								inLikeLoop = false;
+							
+							}
+							
+						}
+					}
+	}
+*/
+
 

@@ -20,9 +20,8 @@ public class ChatbotLubna implements Topic {
 		String[] temp2 = {"lovely","nice","sweet","pretty","kind","great","like","love","beautiful","funny"};
 		lovewords = temp2;
 		secretWord = "potato";
-		String[] temp3 = {"like","hate","cards"};
+		String[] temp3 = {"hate","food"};
 		keywords = temp3;
-		//magic=jessi, stars= mimi,jane= crystal ball;
 	}
 
 	
@@ -38,12 +37,49 @@ public class ChatbotLubna implements Topic {
 		
 	}
 	public void startChatting(String response) {
-		ChatbotMain.print("Welcome! Tell me something about yourself!");
+		int responsecount = 1;
+		ChatbotMain.print("Tell me something you like!");
 		chatting =true;
 		String userName=ChatbotMain.chatbot.name();
 		while(chatting) {
+			responsecount++;
 			response = ChatbotMain.getInput();
 			boolean keywordFound = false;
+			inLikeLoop = true;
+			while(inLikeLoop && responsecount < 4) {
+				responsecount++;
+				
+				likeResponse = response;
+				int likePsn = likeResponse.indexOf("like");
+				if(likePsn > -1) {
+					thingsLiked = likeResponse.substring(likePsn+5);
+					userLikeStored = true;
+					if(thingsLiked.length( ) > 10) {
+						ChatbotMain.print("That's so interesting. Do you want to know what I know about you ;)");
+					}
+					else {
+						ChatbotMain.print("You are such an interesting person, because you like "+ thingsLiked + "." + " Since you've " + 
+								"								+ \" entered the fortune cookie world, do you want to talk about your fortune, or your zodiac signs?? Oh " + 
+								"								+ \"or maybe you want to make some wishes?\"");
+					}
+				
+				}
+				else {
+					thingsLiked = likeResponse;
+					
+					if(thingsLiked.length( ) > 10) {
+						ChatbotMain.print("That's so interesting. Do you want to know what I know about you ;)");
+					}
+					else {
+						ChatbotMain.print("You are such an interesting person, because you like "+ thingsLiked + "." + " Since you've"
+								+ " entered the fortune cookie world, do you want to talk about your fortune, or your zodiac signs?? Oh "
+								+ " or maybe you want to make some wishes?");
+					}
+				}
+					inLikeLoop = false;
+					ChatbotMain.chatbot.resume();
+					}
+				}
 			for(int i=0; i<keywords.length; i++)
 			{	
 			 if(ChatbotMain.findKeyword(response, keywords[i], 0)>=0) {
@@ -51,75 +87,64 @@ public class ChatbotLubna implements Topic {
 				 {
 					 ChatbotMain.print("What are some things you like?");
 				 }
-					inLikeLoop = true;
-					while(inLikeLoop){
-						likeResponse = ChatbotMain.getInput();
-						int likePsn = ChatbotMain.findKeyword(likeResponse,"like",0);
-						if( likePsn >= 0 ){
-							thingsLiked = likeResponse.substring(likePsn+5);
-							userLikeStored = true;
-							//insert if loop here
-							ChatbotMain.print("You are such an interesting person, because you like "+thingsLiked+".");
-							//else that's so interesting. do you want to know what i know about you
-						keywordFound = true;
-						}
-							//ChatbotMain.chatbot.getHello().printMoodyString();
-							if(ChatbotMain.findKeyword(thingsLiked, , 0) >= 0){
+							
+							if(ChatbotMain.findKeyword(thingsLiked,"" , 0) >= 0){
 								inLikeLoop = false;
-								//ChatbotMain.chatbot.getSchool().talk();
+								
 							}
 							else
 							{
 								inLikeLoop = false;
-								//ChatbotMain.chatbot.talkForever();	
+		
 							}
 							
 						}
 					}
-			 		}
-				if(!keywordFound){
-				ChatbotMain.print("I don't understand you.");
-			}
-				 }
-			
-			}
-	/*public void startChatting(String response) {
-		ChatbotMain.print("Aww you so sweet!");
-		chatting = true;
-		while(chatting) {
-			 response = ChatbotMain.getInput();
-			if(ChatbotMain.findKeyword(response, lovewords[0], 0) >= 0) {
-				chatting = false;
-				ChatbotMain.chatbot.resume();
-			}
-			else if(ChatbotMain.findKeyword(response, secretWord, 0) >= 0){
-				ChatbotMain.print("Oh my goodness! You guessed my favorite thing ever. We area friends now.");
-			}
-			else {
-				ChatbotMain.print("Huh. I don't really get you.");
-			}
-		}
-	}*/
-	public void practiceLove() {
-		int loveCount = ChatbotMain.chatbot.getJane().getLoveCount();
 	}
+
 	public String[] meanWords() {
 		return meanwords;
 	}
 	public String[] lovewWords() {
 		return lovewords;
 	}
+
+	public void decreaseLove(String response){
+		for (int i = 0; i<meanwords.length; i++) {
+			if(ChatbotMain.findKeyword(response, meanwords[i], 0) >= 0) {
+			jane.decreaseLoveCount();
+	}
+		}
+	}
+	public void increaseLove(String response) {
+		for (int i = 0; i<lovewords.length; i++) {
+			if(ChatbotMain.findKeyword(response, lovewords[i], 0) >= 0) {
+				jane.increaseLoveCount();
+			}	
+		}
+	}
 }
-/*for (int i = 0; i<meanwords.length; i++) {
-if(ChatbotMain.findKeyword(response, meanwords[i], 0) >= 0) {
-jane.decreaseLoveCount();
-return true;
+
+/*if(!keywordFound){
+ChatbotMain.print("I don't understand you.");
 }
+ }
+
 }
-for (int i = 0; i<lovewords.length; i++) {
-if(ChatbotMain.findKeyword(response, lovewords[i], 0) >= 0) {
-	jane.increaseLoveCount();
-	return true;
+/*public void startChatting(String response) {
+ChatbotMain.print("Aww you so sweet!");
+chatting = true;
+while(chatting) {
+response = ChatbotMain.getInput();
+if(ChatbotMain.findKeyword(response, lovewords[0], 0) >= 0) {
+chatting = false;
+ChatbotMain.chatbot.resume();
+}
+else if(ChatbotMain.findKeyword(response, secretWord, 0) >= 0){
+ChatbotMain.print("Oh my goodness! You guessed my favorite thing ever. We area friends now.");
+}
+else {
+ChatbotMain.print("Huh. I don't really get you.");
+}
 }
 }*/
-/* */
