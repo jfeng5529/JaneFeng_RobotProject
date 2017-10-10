@@ -100,4 +100,3 @@ public class ChatbotJessi implements Topic {
 
 // wish count based on count of love and mean responses (loveCount)
 // answers refers to user's wish!
-// compliment me (wish section when love count == 0)
