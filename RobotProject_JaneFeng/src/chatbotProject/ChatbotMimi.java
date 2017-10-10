@@ -5,13 +5,14 @@ public class ChatbotMimi implements Topic {
 	private String[] keywords;
 	private String[] horoscopeKeywords;
 	private String[] zodiacKeywords;
+	
 	private boolean chatting; 
 	private String goodbyeWord;
 	private String secretWord;
 	private ChatbotJane jane;
 	private String[] meanwords;
 	private String[]  lovewords;
-	
+
 	public ChatbotMimi() {
 		String[] temp = {"zodiac", "horoscope"};
 		keywords = temp;
@@ -23,36 +24,37 @@ public class ChatbotMimi implements Topic {
 		goodbyeWord= temp3;
 		secretWord = "orion's belt";
 		jane = ChatbotMain.chatbot.getJane();
-		}
+	}
 
 	public boolean isTriggered(String response) {
 		for (int i = 0; i<meanwords.length; i++) {
 			if(ChatbotMain.findKeyword(response, meanwords[i], 0) >= 0) {
 				jane.decreaseLoveCount();
 
-		jane = ChatbotMain.chatbot.getJane();
-		for(int i = 0; i < keywords.length; i++) {
-			if(ChatbotMain.findKeyword(response, keywords[i], 0) >= 0)
-				return true;
+				jane = ChatbotMain.chatbot.getJane();
+				for(int j = 0; j < keywords.length; j++) {
+					if(ChatbotMain.findKeyword(response, keywords[j], 0) >= 0)
+						return true;
+				}
 			}
-		}
-			for (int i = 0; i<lovewords.length; i++) {
-				if(ChatbotMain.findKeyword(response, lovewords[i], 0) >= 0) {
+			for (int j = 0; j<lovewords.length; j++) {
+				if(ChatbotMain.findKeyword(response, lovewords[j], 0) >= 0) {
 					jane.increaseLoveCount();
 					return true;
+				}
+			}
 		}
-			}
-			return false;
-			}
+		return false;
 	}
 
 	public void startChatting(String response) {
 		ChatbotMain.print("Ooh! I love talking about this! Tell me when you were born, and I'll give you your fortune. ( ͡° ͜ʖ ͡°)");
 		chatting = true;
-		
+
 		while(chatting) {
 			response = ChatbotMain.getInput();
-			String zodiac = getZodiac(response);
+//			String zodiac = getZodiac(response);
+			String zodiac = findKeywords(response, zodiacKeywords);
 			if(ChatbotMain.findKeyword(response, goodbyeWord, 0) >= 0) {
 				chatting = false;
 				ChatbotMain.chatbot.resume();
@@ -60,20 +62,27 @@ public class ChatbotMimi implements Topic {
 
 			else if(ChatbotMain.findKeyword(response, secretWord, 0) >= 0)
 				ChatbotMain.print("I love counting the stars! Glad you do too :)");
-			else if(ChatbotMain.findKeyword(response, keywords, 0) >= 0) {
+			else if(findKeywords(response, keywords) != null) {
 				ChatbotMain.print("Excellent! Tell me when you were born");
 				// user input
 				// reply with array of responses  
 			}
-=======
 			else if(zodiac != null)
 				tellHoroscope(zodiac);
->>>>>>> branch 'master' of https://github.com/jfeng5529/JaneFeng_RobotProject.git
 			else
 				ChatbotMain.print("wat r u talkin aboot lol.");
 		}
 	}
-	
+
+	public static String findKeywords(String response, String [] keywords) {
+		for(int i=0; i<keywords.length; i++) {
+			if(ChatbotMain.findKeyword(response, keywords[i], 0) >= 0) {
+				return keywords[i];
+			}
+		}
+		return null;
+	}
+
 	private void tellHoroscope(String zodiac) {
 		// this is what the bot returns after the user inputs their birth date.
 		if (zodiac = keyword) {
@@ -87,29 +96,29 @@ public class ChatbotMimi implements Topic {
 			 * 
 			 */
 		}
-		
+
 	}
 
-	public String getZodiac(String input) {
-		//returns word in the array based on their birthday.
-		//returns null if it doesn't get anything.
-		for (int i = 0; i < horoscopeKeywords.length; i++) {
-			if(ChatbotMain.findKeyword(input, keywords[i], 0) >= 0) {
-				// look for what the input was inside of the array
-				tellHoroscope(input);
-			}
-			else {
-				for (int i = 0; i < zodiacKeywords.length; i++) {
-					// do the same, but look in the zodiac array
-					tellHoroscope(input);
-				}
-			}
-				
-		}
-		return null;
-		ChatbotMain.print("You might've made a mistake. Could you please repeat when you were born?");
-	}
-	
+//	public String getZodiac(String input) {
+//		//returns word in the array based on their birthday.
+//		//returns null if it doesn't get anything.
+//		for (int i = 0; i < horoscopeKeywords.length; i++) {
+//			if(ChatbotMain.findKeyword(input, keywords[i], 0) >= 0) {
+//				// look for what the input was inside of the array
+//				tellHoroscope(input);
+//			}
+//			else {
+//				for (int i = 0; i < zodiacKeywords.length; i++) {
+//					// do the same, but look in the zodiac array
+//					tellHoroscope(input);
+//				}
+//			}
+//
+//		}
+//		return null;
+//		ChatbotMain.print("You might've made a mistake. Could you please repeat when you were born?");
+//	}
+
 	public void practiceLove() {
 		int loveCount = ChatbotMain.chatbot.getJane().getLoveCount();
 	}
