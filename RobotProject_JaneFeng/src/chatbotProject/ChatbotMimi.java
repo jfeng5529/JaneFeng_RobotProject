@@ -9,6 +9,8 @@ public class ChatbotMimi implements Topic {
 	private String goodbyeWord;
 	private String secretWord;
 	private ChatbotJane jane;
+	private String[] meanwords;
+	private String[]  lovewords;
 	
 	public ChatbotMimi() {
 		String[] temp = {"zodiac", "horoscope"};
@@ -19,16 +21,29 @@ public class ChatbotMimi implements Topic {
 		zodiacKeywords = temp2;
 		String temp3 = "bye";
 		goodbyeWord= temp3;
-		secretWord = "weenie";
+		secretWord = "orion's belt";
+		jane = ChatbotMain.chatbot.getJane();
 		}
 
 	public boolean isTriggered(String response) {
+		for (int i = 0; i<meanwords.length; i++) {
+			if(ChatbotMain.findKeyword(response, meanwords[i], 0) >= 0) {
+				jane.decreaseLoveCount();
+
 		jane = ChatbotMain.chatbot.getJane();
 		for(int i = 0; i < keywords.length; i++) {
 			if(ChatbotMain.findKeyword(response, keywords[i], 0) >= 0)
 				return true;
+			}
 		}
-		return false;
+			for (int i = 0; i<lovewords.length; i++) {
+				if(ChatbotMain.findKeyword(response, lovewords[i], 0) >= 0) {
+					jane.increaseLoveCount();
+					return true;
+		}
+			}
+			return false;
+			}
 	}
 
 	public void startChatting(String response) {
@@ -42,8 +57,18 @@ public class ChatbotMimi implements Topic {
 				chatting = false;
 				ChatbotMain.chatbot.resume();
 			}
+
+			else if(ChatbotMain.findKeyword(response, secretWord, 0) >= 0)
+				ChatbotMain.print("I love counting the stars! Glad you do too :)");
+			else if(ChatbotMain.findKeyword(response, keywords, 0) >= 0) {
+				ChatbotMain.print("Excellent! Tell me when you were born");
+				// user input
+				// reply with array of responses  
+			}
+=======
 			else if(zodiac != null)
 				tellHoroscope(zodiac);
+>>>>>>> branch 'master' of https://github.com/jfeng5529/JaneFeng_RobotProject.git
 			else
 				ChatbotMain.print("wat r u talkin aboot lol.");
 		}
@@ -51,7 +76,17 @@ public class ChatbotMimi implements Topic {
 	
 	private void tellHoroscope(String zodiac) {
 		// this is what the bot returns after the user inputs their birth date.
-		if (zodiac = "")
+		if (zodiac = keyword) {
+			ChatbotMain.print("The intensity should increase around an issue regarding love and romance. Friction is building. Unfortunately, this tension may be unavoidable. It's likely that some sort of power struggle is being thrown into the mix, and you may fight for control of your emotions. Try not to get sucked into a bottomless pit.");
+			/*
+			 * Taurus = "Let your heart shine. Love surrounds you like a beautiful pink cloud, and you can't help but attract people to you. Take romance to a higher level with someone really special tonight. You'll find that whatever you give will come back to you tenfold. Your aura glows brightly with emotion, so let it light your way."
+			 * Gem = There's a great deal of transforming energy in the air that you should harness and capitalize on. You may be a fan of the diet that you'll start "tomorrow." When tomorrow comes and there's a huge meal of pizza, soda, and fries, suddenly the diet once again starts "tomorrow." Use the powerful energy of today to break out of this habit and make a real change in your life.
+			 * Canc = You may experience writer's block in every sense of the phrase. Even if you don't consider yourself a writer, for some reason it may be difficult to get even the simplest words down on paper. Don't get upset. Your verbal juices may not be flowing freely, but they haven't disappeared. Use this time to read other people's works and visit museums for inspiration.
+			 * Leo = Action should be your main priority, especially when it comes to love and romance. You may not be too concerned about what sort of action you take. Your only concern is that you aren't sitting still at any time. Once you figure out what you want, you're unlikely to stop until you get it. Your power is forceful and extreme.
+			 * Virgo = A surprise in love and romance is on its way to you. Things are coming full circle, and the investment you made in this realm is finally paying off. Something new is cropping up, but in reality, this is a result of things you set in motion long ago. Be open to embracing the tremendous flow of love and beauty that's coming your way.
+			 * 
+			 */
+		}
 		
 	}
 
