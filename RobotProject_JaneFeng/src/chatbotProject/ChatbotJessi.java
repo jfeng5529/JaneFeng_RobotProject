@@ -44,22 +44,25 @@ public class ChatbotJessi implements Topic {
 			ChatbotMain.print("You have "+wishCount+" wishes to make!!!");
 		}
 		else if(loveCount == 0) {
-			ChatbotMain.print("I see that you have just entered the fortune cookie world. Well aren't you greedy!!! Complimemt me! ");
+			ChatbotMain.print("I see that you have just entered the fortune cookie world. Well aren't you greedy!!! Complimemt me!");
 			for(int i = 0; i< keywords.length; i++) {
 				if(ChatbotMain.findKeyword(response, compliments[i], 0) >= 0) {
 					wishCount = 2;
-					ChatbotMain.print("You have "+wishCount+" wish to make!");
+					ChatbotMain.print("You have "+wishCount+" wishes to make!");
 				}
 				else {
 					wishCount = 0;
-					ChatbotMain.print("U");
+					ChatbotMain.print("Sorry your wish count is currently 0. However you can go explore your fortune or horoscope and then come back.");
 				}
+				chatting = false;
+				//then resume
 			}
 		}
 		else {
 			wishCount = 1;
 			ChatbotMain.print("Hmmmm...wait your attitude and the things you said earlier wasn't that nice. I will grant you "+wishCount+" and only "+wishCount+" wish.");
 		}
+		ChatbotMain.print("");
 		while(chatting) {
 			response = ChatbotMain.getInput();
 			for(int i = 0; i< keywords.length; i++) {
@@ -98,5 +101,4 @@ public class ChatbotJessi implements Topic {
 
 }
 
-// wish count based on count of love and mean responses (loveCount)
 // answers refers to user's wish!
