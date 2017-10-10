@@ -86,7 +86,7 @@ public class ChatbotMimi implements Topic {
 
 	private void tellHoroscope(String zodiac) {
 		// this is what the bot returns after the user inputs their birth date.
-		if (zodiac = keyword) {
+		 //if (zodiac = keywords) {
 			ChatbotMain.print("The intensity should increase around an issue regarding love and romance. Friction is building. Unfortunately, this tension may be unavoidable. It's likely that some sort of power struggle is being thrown into the mix, and you may fight for control of your emotions. Try not to get sucked into a bottomless pit.");
 			/*
 			 * Taurus = "Let your heart shine. Love surrounds you like a beautiful pink cloud, and you can't help but attract people to you. Take romance to a higher level with someone really special tonight. You'll find that whatever you give will come back to you tenfold. Your aura glows brightly with emotion, so let it light your way."
@@ -98,7 +98,7 @@ public class ChatbotMimi implements Topic {
 			 */
 		}
 
-	}
+	//}
 
 //	public String getZodiac(String input) {
 //		//returns word in the array based on their birthday.
