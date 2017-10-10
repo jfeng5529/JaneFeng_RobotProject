@@ -3,9 +3,8 @@ package chatbotProject;
 public class ChatbotJessi implements Topic {
 	
 	private String[] keywords;
-	//private String[] userWishes;
 	private String[] compliments;
-	private String goodbyeWords;
+	private String[] goodbyeWords;
 	private String secretWord;
 	private String noResponse;
 	private boolean chatting;
@@ -16,15 +15,12 @@ public class ChatbotJessi implements Topic {
 	public ChatbotJessi(){
 		String[] temp = {"wish","wishes","wants","hope","need","craving","demand","fancy","longing","yearning"};
 		keywords = temp;
-		String[] temp2 = {""};
+		String[] temp2 = {"adorable","authentic","amazing","awesome","best","brillant","cool","divine","fabulous","generous","giving","incredible","magnificient","nice","outstanding","powerful","vibrant"};
 		compliments = temp2;
-		//String[] temp2 = {"puppy", "dog","cat","money","chocolate", "candy", "car","house"};
-		//userWishes = temp2;
-		goodbyeWords = "bye";
+		String[] temp3 = {"bye","goodbye","see you", "adios","aloha","ciao","farewell","later"};
+		goodbyeWords = temp3;
 		secretWord = "magic";
-		noResponse = "";
-		
-		
+		noResponse = "";	
 	}
 
 	@Override
@@ -49,8 +45,15 @@ public class ChatbotJessi implements Topic {
 		}
 		else if(loveCount == 0) {
 			ChatbotMain.print("I see that you have just entered the fortune cookie world. Well aren't you greedy!!! Complimemt me! ");
-			if(ChatbotMain.findKeyword(response, compliments[i], 0) >= 0) {
-				
+			for(int i = 0; i< keywords.length; i++) {
+				if(ChatbotMain.findKeyword(response, compliments[i], 0) >= 0) {
+					wishCount = 2;
+					ChatbotMain.print("You have "+wishCount+" wish to make!");
+				}
+				else {
+					wishCount = 0;
+					ChatbotMain.print("U");
+				}
 			}
 		}
 		else {
