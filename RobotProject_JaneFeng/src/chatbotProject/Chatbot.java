@@ -41,7 +41,7 @@ public class Chatbot {
 		ChatbotMain.print("You have entered the fortune cookie world. Give me your name.");
 		userName= ChatbotMain.getInput();
 		ChatbotMain.print("Nice meeting you "+userName+"!");
-		String response = ChatbotMain.getInput();
+		String response = "";
 		lubna.startChatting(response);
 		
 	}

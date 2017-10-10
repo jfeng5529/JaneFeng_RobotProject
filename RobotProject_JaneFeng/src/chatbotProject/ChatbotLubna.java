@@ -58,9 +58,7 @@ public class ChatbotLubna implements Topic {
 						ChatbotMain.print("That's so interesting. Do you want to know what I know about you ;)");
 					}
 					else {
-						ChatbotMain.print("You are such an interesting person, because you like "+ thingsLiked + "." + " Since you've " + 
-								"								+ \" entered the fortune cookie world, do you want to talk about your fortune, or your zodiac signs?? Oh " + 
-								"								+ \"or maybe you want to make some wishes?\"");
+						ChatbotMain.print("You are such an interesting person, because you like "+ thingsLiked + "." + " Since you've entered the fortune cookie world, do you want to talk about your fortune, or your zodiac signs?? Oh or maybe you want to make some wishes?  "); 
 					}
 				
 				}
