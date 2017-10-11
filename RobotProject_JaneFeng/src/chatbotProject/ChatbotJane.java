@@ -18,7 +18,7 @@ public class ChatbotJane implements Topic {
 	public ChatbotJane() {
 		String[] temp = {"fortune", "future", "luck", "success", "failure"} ;
 		keywords = temp;
-		String[] temp2 = {"bye", "got to go", "talk to you later", "goodbye", "see you"};
+		String[] temp2 = {"bye", "got to go", "talk to you later", "goodbye", "see you", "stop"};
 		goodbyeWords= temp2;
 		String[] temp3 = {"no", "are you kidding", "yes", "sure", "go ahead", "of course", "why not", "okay" };
 		answerWords=temp3;
@@ -29,7 +29,7 @@ public class ChatbotJane implements Topic {
 		loveResponse=temp5;
 		String[] temp6= {"Awwww. Rememeber to come back soon.", "BYEEEEEEEE!", "I'll think about your fortune when you are gone.", "Don't let me miss you too much!", "Good don't come back...............Ha just kidding or not.", "Bye go do your work.", "I was going to say the same thing. Enough talking.", "I will think of a 'surprise' to put in ur fortune when you are gone.", "Okay bye bye bye.", "Fine, if you insist."};
 		goodbyeResponse=temp6;	
-		String[] temp7= {"Are you an active person?", "What is your age?", "What do you like to do in your spare time?", "Do you try to set goals and try to meet them?", "Do you worry about money alot?", "Do you spend alot of time by yourself?", "Do you like the way you look?", "Would you rather tell the truth or lie and get paid?"};
+		String[] temp7= {"What is your age?", "Which do you value more, friends or family?","Would you rather tell the truth or lie and get paid?", "Are you an active person?", "Do you try to set goals and try to meet them?", "Do you worry about money alot?", "Do you spend alot of time by yourself?", "Do you like the way you look?"};
 		quizConvo=temp7;
 		String[] temp8= {"Wishes will come true for you. Always remember that God will reward those who commit good deeds and punish the ones that purse the worst of humanities. Time is not the problem; it is the solution. Maintain your honesty and innocence, and light will guide your way.", "It might sound sad, but you are an average person with an average ambition. Life might be ordinary, but how is that not something joyful and meaningful. As long as you STUDY AND DO YOUR HOMEWORK love will be approaching you. In other words no grade no love.", "Theres much room for you to improve, but on the good side you still have much time to accomplish that. Be committed to your own goals so they can be committed to you. Life is circle. You might find what your looking for is right there with you in the start. Don't forget your primary ambition, what started you on your journey. Keep that simple pleasure so you can reflect back when you are on the other half of the circle. Don't worry about money and love as much, they will come when the time is right."};
 		quizResult=temp8;
@@ -47,6 +47,8 @@ public class ChatbotJane implements Topic {
 
 	public void startChatting(String response) {
 		ChatbotMain.print("Ah ha! Now you have asked, too bad if you didn't, I want to give a you a fortune telling.");
+		int meanResponseCount=0; 
+		int niceResponseCount=0;
 		chatting =true;
 		String userName=ChatbotMain.chatbot.name();
 		while(chatting) {
@@ -94,12 +96,15 @@ public class ChatbotJane implements Topic {
 			if(!keywordFound) {
 				if(loveCount<0) {
 				ChatbotMain.print(meanResponse[(int) (Math.random()*meanResponse.length)]);
-				ChatbotMain.chatbot.resume();
+				meanResponseCount++;
+				if(meanResponseCount>2) {
+				ChatbotMain.chatbot.resume();}
 				
 			  }
 				else {
 					ChatbotMain.print(loveResponse[(int) (Math.random()*loveResponse.length)]);
-					ChatbotMain.chatbot.resume();
+					if(niceResponseCount>2) {
+						ChatbotMain.chatbot.resume();}
 				}
 			}		
 		}
@@ -118,7 +123,11 @@ public class ChatbotJane implements Topic {
 			else{
 			ChatbotMain.print(quizConvo[conversationCount]);
 			conversationCount++;
-			if(conversationCount>=4)
+			if(endSpotting(response)) {
+				quizLoop=false;
+				ChatbotMain.chatbot.resume();
+			}
+			if(conversationCount>=3)
 			{
 				if(response.equals("yes")) {
 					quizPoints--;
@@ -149,6 +158,22 @@ public class ChatbotJane implements Topic {
 		}
 	}	
 	
+	private boolean endSpotting(String response) {
+		for(int i =0; i<goodbyeWords.length; i++) {
+			if(ChatbotMain.findKeyword(response, goodbyeWords[i], 0)>=0) {
+				decreaseLoveCount();
+				if(i==goodbyeWords.length-1) {
+				ChatbotMain.print("Ugh okay fine. I'll end the quiz thing here.");
+				return true;
+				}else {
+				ChatbotMain.print("Awww okay. We can check your fortune next time.");
+				return false;
+				}
+			}
+		}
+		return false;
+	}
+
 	private void loveSpotting(String response) {
 		String[] meanWords=ChatbotMain.chatbot.getLubna().meanWords();
 		String[] loveWords=ChatbotMain.chatbot.getLubna().lovewWords();
