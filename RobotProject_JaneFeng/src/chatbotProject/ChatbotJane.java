@@ -156,6 +156,9 @@ public class ChatbotJane implements Topic {
 						}
 						else {
 							ChatbotMain.print(annoyedResponse[count]);
+							if(count==1) {
+								ChatbotMain.print(ChatbotMain.chatbot.getLubna().getLike()+" won't like you anymore if you keep acting like this.");
+							}
 							count++;}
 						if(count==3)
 						{
@@ -181,6 +184,9 @@ public class ChatbotJane implements Topic {
 						}
 						else {
 							ChatbotMain.print(annoyedResponse2[count2]);
+							if(count2==1) {
+								ChatbotMain.print("I will tell "+ ChatbotMain.chatbot.getLubna().getLike()+" not to like you anymore.");
+							}
 							count2++;
 					}
 						if(count2==3)
