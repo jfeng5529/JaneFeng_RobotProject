@@ -99,7 +99,9 @@ public class ChatbotLubna implements Topic {
 						}
 					}
 	}
-
+	public String getLike() {
+		return thingsLiked;
+	}
 	public String[] meanWords() {
 		return meanwords;
 	}
