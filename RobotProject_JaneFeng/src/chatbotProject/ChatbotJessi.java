@@ -50,7 +50,7 @@ public class ChatbotJessi implements Topic {
 		else if(loveCount == 0) {
 			ChatbotMain.print("I see that you have just entered the fortune cookie world. Well aren't you greedy!!! Complimemt me!");
 			response = ChatbotMain.getInput();
-			checkForUserInput(response);
+			//checkForUserInput(response);
 			boolean found = false;
 			for(int i = 0; i< compliments.length; i++) {
 				if(ChatbotMain.findKeyword(response, compliments[i], 0) >= 0) {
@@ -79,7 +79,7 @@ public class ChatbotJessi implements Topic {
 			while(wishCount > 0) {
 				ChatbotMain.print("What do you wish for?");
 				response = ChatbotMain.getInput();
-				checkForUserInput(response);
+				//checkForUserInput(wishResponse);
 				wishResponse = response;
 				int forPsn = wishResponse.indexOf("for");
 				if(forPsn > -1) {
@@ -104,9 +104,9 @@ public class ChatbotJessi implements Topic {
 		}
 	}
 
-	private void checkForUserInput(String s) {
+	private void checkForUserInput(String response) {
 		for(int i = 0; i< goodbyeWords.length; i++) {
-			if(ChatbotMain.findKeyword(s, goodbyeWords[i], 0) >= 0) {
+			if(ChatbotMain.findKeyword(response, goodbyeWords[i], 0) >= 0) {
 				chatting = false;
 				if(loveCount > 0) {
 					ChatbotMain.print("Can't think of any wishes right now? It's okay! Feel free to come back anytime for your wishes to be granted!");
@@ -115,21 +115,19 @@ public class ChatbotJessi implements Topic {
 					ChatbotMain.print("Good riddance! =P");
 				}
 					ChatbotMain.chatbot.startTalkin();
-			}else if(ChatbotMain.findKeyword(s, secretWord, 0) >= 0) {
+			}else if(ChatbotMain.findKeyword(response, secretWord, 0) >= 0) {
 				ChatbotMain.print("You believe in magic too!! We are buddies now. I will grant you an extra wish!");
 				wishCount = wishCount + 1;
 				ChatbotMain.print("You now have "+wishCount+" wishes.");
-			}else {
-				if(ChatbotMain.findKeyword(s, noResponse, 0) >= 0) {
+			}else if(ChatbotMain.findKeyword(response, noResponse, 0) >= 0) {
 					ChatbotMain.print("Well I guess you really don't want to make any wishes...");
 					wishCount = wishCount - 1;
 					ChatbotMain.print("You now have "+wishCount+" wishes.");
 					chatting = false;
-				
+			}else {
 					ChatbotMain.print("Huh. I don't really get you. Tell me something else?");
 					ChatbotMain.chatbot.resume();
 				}
 			}
 		}
 	}
-}
