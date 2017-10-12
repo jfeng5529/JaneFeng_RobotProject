@@ -10,7 +10,12 @@ public class ChatbotJessi implements Topic {
 	private boolean chatting;
 	private int wishCount;
 	private ChatbotJane jane;
-	private int loveCount;																																								
+	private int loveCount;		
+	
+	private boolean inWishLoop;
+	private String wishResponse;
+	private String thingsWished;
+	private boolean userWishStored;
 	
 	public ChatbotJessi(){
 		String[] temp = {"wish","wishes","wants","hope","need","craving","demand","fancy","longing","yearning"};
@@ -45,26 +50,66 @@ public class ChatbotJessi implements Topic {
 		}
 		else if(loveCount == 0) {
 			ChatbotMain.print("I see that you have just entered the fortune cookie world. Well aren't you greedy!!! Complimemt me!");
-			for(int i = 0; i< keywords.length; i++) {
+			response = ChatbotMain.getInput();
+			boolean found = false;
+			for(int i = 0; i< compliments.length; i++) {
 				if(ChatbotMain.findKeyword(response, compliments[i], 0) >= 0) {
 					wishCount = 2;
 					ChatbotMain.print("You have "+wishCount+" wishes to make!");
+					found = true;
+					break;
 				}
-				else {
-					wishCount = 0;
-					ChatbotMain.print("Sorry your wish count is currently 0. However you can go explore your fortune or horoscope and then come back.");
-				}
+			}
+			if(found == false) {
+				wishCount = 0;
+				ChatbotMain.print("Sorry your wish count is currently 0. However you can go explore your fortune or horoscope and then come back.");
+				
 				chatting = false;
-				//then resume
+				ChatbotMain.chatbot.resume();
 			}
 		}
 		else {
 			wishCount = 1;
 			ChatbotMain.print("Hmmmm...wait your attitude and the things you said earlier wasn't that nice. I will grant you "+wishCount+" and only "+wishCount+" wish.");
 		}
-		ChatbotMain.print("");
+		
+		ChatbotMain.print("What do you wish for?");
+		
+		
 		while(chatting) {
 			response = ChatbotMain.getInput();
+			inWishLoop = true;
+			while(inWishLoop) {
+				wishResponse = response;
+				int forPsn = wishResponse.indexOf("for");
+				if(forPsn > -1) {
+					thingsWished = wishResponse.substring(forPsn+4);
+					userWishStored = true;
+					if(thingsWished.length( ) > 15) {
+						ChatbotMain.print("I'm sorry I don't think I can grant this wish.");
+					}
+					else {
+						wishCount = wishCount - 1;
+						ChatbotMain.print("Your wish for "+ thingsWished + " is granted! " + "You have " + wishCount + " wish left!!"); 
+					}
+				
+				}
+				else {
+					thingsWished = wishResponse;
+					if(thingsWished.length( ) > 15) {
+						ChatbotMain.print("I'm sorry I don't think I can grant this wish.");
+					}
+					else {
+						wishCount = wishCount - 1;
+						ChatbotMain.print("Your wish for "+ thingsWished + " is granted! " + "You have " + wishCount + " wish left!!"); 
+					}
+				}
+					inWishLoop = false;
+					ChatbotMain.chatbot.resume();
+					}
+			}
+			
+			
 			for(int i = 0; i< keywords.length; i++) {
 				if(ChatbotMain.findKeyword(response, goodbyeWords[i], 0) >= 0) {
 					chatting = false;
@@ -93,12 +138,3 @@ public class ChatbotJessi implements Topic {
 			}
 		}
 	}
-	//public String wishes(){
-		
-	//}
-	
-	
-
-}
-
-// answers refers to user's wish!
