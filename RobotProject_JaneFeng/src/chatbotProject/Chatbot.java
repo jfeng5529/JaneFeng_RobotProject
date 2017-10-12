@@ -53,10 +53,10 @@ public class Chatbot {
 				chatting = false;
 				lubna.startChatting(response);
 			}
-			if(mimi.isTriggered(response)) {
+			/*if(mimi.isTriggered(response)) {
 				chatting = false;
 				mimi.startChatting(response);
-			}
+			}*/
 			if(jane.isTriggered(response)) {
 				chatting = false;
 				jane.startChatting(response);
