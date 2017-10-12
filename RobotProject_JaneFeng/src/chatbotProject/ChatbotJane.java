@@ -110,12 +110,14 @@ public class ChatbotJane implements Topic {
 				ChatbotMain.print(meanResponse[(int) (Math.random()*meanResponse.length)]);
 				meanResponseCount++;
 				if(meanResponseCount>2) {
+					ChatbotMain.print("let's just talk horoscope and wishes now.");
 				ChatbotMain.chatbot.resume();}
 				
 			  }
 				else {
 					ChatbotMain.print(loveResponse[(int) (Math.random()*loveResponse.length)]);
 					if(niceResponseCount>2) {
+						ChatbotMain.print("How about we talk horoscope and wishes now.");
 						ChatbotMain.chatbot.resume();}
 				}
 			}		
