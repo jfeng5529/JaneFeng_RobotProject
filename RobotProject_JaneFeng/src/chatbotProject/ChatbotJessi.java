@@ -6,7 +6,6 @@ public class ChatbotJessi implements Topic {
 	private String[] compliments;
 	private String[] goodbyeWords;
 	private String secretWord;
-	private String noResponse;
 	private boolean chatting;
 	private int wishCount;
 	private ChatbotJane jane;
@@ -24,7 +23,6 @@ public class ChatbotJessi implements Topic {
 		String[] temp3 = {"bye","goodbye","see you", "adios","aloha","ciao","farewell","later"};
 		goodbyeWords = temp3;
 		secretWord = "magic";
-		noResponse = "";	
 	}
 
 	@Override
@@ -50,7 +48,6 @@ public class ChatbotJessi implements Topic {
 		else if(loveCount == 0) {
 			ChatbotMain.print("I see that you have just entered the fortune cookie world. Well aren't you greedy!!! Complimemt me!");
 			response = ChatbotMain.getInput();
-			//checkForUserInput(response);
 			boolean found = false;
 			for(int i = 0; i< compliments.length; i++) {
 				if(ChatbotMain.findKeyword(response, compliments[i], 0) >= 0) {
@@ -79,13 +76,31 @@ public class ChatbotJessi implements Topic {
 			while(wishCount > 0) {
 				ChatbotMain.print("What do you wish for?");
 				response = ChatbotMain.getInput();
-				//checkForUserInput(wishResponse);
+				if(ChatbotMain.findKeyword(response, secretWord, 0) >= 0) {
+					ChatbotMain.print("You believe in magic too!! We are buddies now. I will grant you an extra wish!");
+					wishCount = wishCount + 1;
+					ChatbotMain.print("You now have "+wishCount+" wishes.");
+					continue;
+				}
+				if(response.isEmpty()) {
+					ChatbotMain.print("Well I guess you really don't want to make any wishes...");
+					if(wishCount > 0) {
+						wishCount = wishCount - 1;
+						ChatbotMain.print("You now have "+wishCount+" wishes.");
+					}else {
+						wishCount = 0;
+						ChatbotMain.print("You now have "+wishCount+" wish.");
+					}
+					chatting = false;
+					continue;
+				}
 				wishResponse = response;
 				int forPsn = wishResponse.indexOf("for");
 				if(forPsn > -1) {
 					thingsWished = wishResponse.substring(forPsn+4);
 				}
 				else {
+					checkInput(response);
 					thingsWished = response;
 				}
 					
@@ -104,7 +119,8 @@ public class ChatbotJessi implements Topic {
 		}
 	}
 
-	private void checkForUserInput(String response) {
+	private void checkInput(String response) {
+		response = response.trim();
 		for(int i = 0; i< goodbyeWords.length; i++) {
 			if(ChatbotMain.findKeyword(response, goodbyeWords[i], 0) >= 0) {
 				chatting = false;
@@ -115,19 +131,7 @@ public class ChatbotJessi implements Topic {
 					ChatbotMain.print("Good riddance! =P");
 				}
 					ChatbotMain.chatbot.startTalkin();
-			}else if(ChatbotMain.findKeyword(response, secretWord, 0) >= 0) {
-				ChatbotMain.print("You believe in magic too!! We are buddies now. I will grant you an extra wish!");
-				wishCount = wishCount + 1;
-				ChatbotMain.print("You now have "+wishCount+" wishes.");
-			}else if(ChatbotMain.findKeyword(response, noResponse, 0) >= 0) {
-					ChatbotMain.print("Well I guess you really don't want to make any wishes...");
-					wishCount = wishCount - 1;
-					ChatbotMain.print("You now have "+wishCount+" wishes.");
-					chatting = false;
-			}else {
-					ChatbotMain.print("Huh. I don't really get you. Tell me something else?");
-					ChatbotMain.chatbot.resume();
-				}
 			}
 		}
-	}
+			}
+		}
